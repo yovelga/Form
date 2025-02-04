@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Redirect to Form</title>
+    <script>
+        window.onload = function() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            var deviceType = '';
+            var redirectUrl = '';
+
+            // Detect if the device is mobile
+            if (/android|iphone|ipad|ipod/i.test(userAgent)) {
+                deviceType = 'Mobile Device';
+                redirectUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfvKTVRFK-K71CerAfo5b_JyijvgdXofbizhz-pVsCqgKt-Uw/viewform?usp=dialog";
+            } else {
+                deviceType = 'Computer';
+                redirectUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfhRxIawHgH-l75LRAi-LgsXLMg3uJzYkkAoITAb8FzlbSxhw/viewform?usp=dialog";
+            }
+
+            document.getElementById('device-info').innerText = 'Detected device: ' + deviceType;
+
+            // Redirect after 3 seconds
+            setTimeout(function() {
+                window.location.href = redirectUrl;
+            }, 3000);
+        }
+    </script>
+</head>
+<body>
+    <h2 id="device-info">Detecting your device...</h2>
+    <h3>Please wait while we redirect you to the appropriate form...</h3>
+</body>
+</html>
